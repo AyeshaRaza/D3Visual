@@ -80,7 +80,7 @@
         .enter().append("rect")
         .attr("id", "chartBars")
         .attr("class", "bar")
-        .attr("fill", d3.hsl(250, .5, .5))
+        .attr("fill", d3.color("steelblue"))
         .attr("x", function (d) { return x(d.Damage_Descp); })
         .attr("width", x.bandwidth())
         .attr("y", function (d) { return y(d.Amount); })
@@ -93,7 +93,7 @@
         .style("text-anchor", "end")
         .attr("dx", "-.9em")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .attr("transform", "rotate(275)");
+        .attr("transform", "rotate(270)");
       svg.append("g")
         .attr("id", "chartBars")
         .call(d3.axisLeft(y));
