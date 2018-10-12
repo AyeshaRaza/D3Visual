@@ -11,8 +11,8 @@
     allData2();
     var allPaths;
     var margin = { top: 10, right: 0, bottom: 30, left: 0 };
-    var svgWidth = 700 - margin.left - margin.right;
-    var svgHeight = 400 - margin.top - margin.bottom;
+    var width = 700 - margin.left - margin.right;
+    var height = 400 - margin.top - margin.bottom;
     function allData() {
       d3.json("https://raw.githubusercontent.com/AyeshaRaza/D3Visual/master/us-10m.json", function (json) {
         allPaths = json;
@@ -101,12 +101,12 @@
     function createMap() {
       var svg = d3.select("#map")
         .append("svg")
-        .attr("width", svgWidth + margin.left + margin.right)
-        .attr("height", svgHeight + margin.top + margin.bottom)
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       var projection = d3.geoAlbersUsa()
-        .translate([svgWidth / 2, svgHeight / 2])
+        .translate([width / 2, height / 2])
         .scale([900]);
       var path = d3.geoPath()
         .projection(projection);
