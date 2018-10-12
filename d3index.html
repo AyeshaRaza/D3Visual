@@ -27,7 +27,6 @@
         createMap();
       });
     }
-
     function allData2() {
       d3.csv("https://raw.githubusercontent.com/AyeshaRaza/D3Visual/master/losses2015_transformed.csv", function (err, data) {
         allData = data;
@@ -35,7 +34,6 @@
         barChart(null);
       });
     }
-
     function allData2(id) {
       d3.csv("https://raw.githubusercontent.com/AyeshaRaza/D3Visual/master/losses2015_transformed.csv", function (err, data) {
         allData = data;
@@ -43,7 +41,6 @@
         barChart(id);
       });
     }
-
     function barChart(id) {
       if (id == null) {
         allData = allData;
@@ -55,7 +52,6 @@
           }
         });
       }
-
       var margin = { top: 20, right: 0, bottom: 100, left: 80 },
         width = 500 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
@@ -68,19 +64,17 @@
         .attr("id", "chartBars")
         .attr("height", height + margin.top + margin.bottom)
         .attr("width", width + margin.left + margin.right)
+        .append("g")
         .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
       allData.sort(function (d, i) {
         return i.Amount - d.Amount;
       });
-
       allData.forEach(function (d) {
         d.Amount = parseInt(d.Amount);
       });
-
       x.domain(allData.map(function (d) { return d.Damage_Descp; }));
       y.domain([d3.min(allData, function (d) { return d.Amount; }), d3.max(allData, function (d) { return d.Amount; })]);
-
       svg.selectAll(".bar")
         .data(allData)
         .enter().append("rect")
@@ -91,7 +85,6 @@
         .attr("width", x.bandwidth())
         .attr("y", function (d) { return y(d.Amount); })
         .attr("height", function (d) { return height - y(d.Amount); })
-
       svg.append("g")
         .attr("id", "chartBars")
         .attr("transform", "translate(0," + height + ")")
@@ -101,12 +94,10 @@
         .attr("dx", "-.9em")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .attr("transform", "rotate(275)");
-
       svg.append("g")
         .attr("id", "chartBars")
         .call(d3.axisLeft(y));
     }
-
     function createMap() {
       var svg = d3.select("#map")
         .append("svg")
@@ -119,7 +110,6 @@
         .scale([900]);
       var path = d3.geoPath()
         .projection(projection);
-
       var states = svg.selectAll("path")
         .data(topojson.feature(allPaths, allPaths.objects.states).features)
         .enter()
@@ -150,7 +140,6 @@
           allData2(null);
         });
     }
-
   </script>
 </head>
 <body>
